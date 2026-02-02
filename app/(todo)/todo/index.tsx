@@ -12,7 +12,7 @@ const TodoPage = () => {
   };
   return (
     <div>
-      <div className="min-h-screen flex flex-col justify-center items-center items p-5">
+      <div className="min-h-screen flex flex-col justify-center items-center items p-10">
         <Input onAdd={addTodo} />
         <div className=" my-8 border-t border-slate-600/50 w-full flex flex-col items-center justify-center  ">
           <h3 className="text-xl font-black my-8 ">Your Todos</h3>
