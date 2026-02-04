@@ -1,8 +1,9 @@
 export interface TodoItem {
   title: string;
-  id: number;
+  id: string;
 }
 
 export interface ListProps {
   todos: TodoItem[];
+  onDelete: (id: string) => void;
 }

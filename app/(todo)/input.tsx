@@ -7,16 +7,22 @@ interface InputProps {
 }
 
 const Input = ({ onAdd }: InputProps) => {
+  const [title, setTitle] = useState<string>("");
+
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    if (!title.trim()) {
+      alert("write a todo first");
+      return;
+    }
     const newTodo: TodoItem = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       title: title,
     };
     onAdd(newTodo);
-    e.preventDefault();
     setTitle("");
   };
-  const [title, setTitle] = useState<string>("");
+
   return (
     <div>
       <form
@@ -30,9 +36,15 @@ const Input = ({ onAdd }: InputProps) => {
           }}
           value={title}
         />
-        <button className="bg-slate-600 text-slate-200 w-full p-2 rounded-md cursor-pointer hover:bg-slate-500 font-bold ">
-          Add
-        </button>
+        {title ? (
+          <button className="bg-slate-600 text-slate-200 w-full p-2 rounded-md cursor-pointer hover:bg-slate-500 font-bold ">
+            Add
+          </button>
+        ) : (
+          <button className="bg-slate-600 text-slate-400 w-full p-2 rounded-md cursor-not-allowed  font-bold ">
+            Add
+          </button>
+        )}
       </form>
     </div>
   );
